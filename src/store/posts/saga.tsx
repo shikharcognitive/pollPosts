@@ -12,12 +12,11 @@ interface ResponseGenerator{
     statusText?:string
 }
 
-const getPosts=()=> axios.get('https://hn.algolia.com/api/v1/search_by_date?query=story&page=1');
+const getPosts=(page:any)=> axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=story&page=${page}`);
 
-function* fetchPostsSaga () {
+function* fetchPostsSaga (data:any) {
     try {
-
-        const response:ResponseGenerator= yield call<any>(getPosts);
+        const response:ResponseGenerator= yield call<any>(getPosts,data.payload);
         yield put(fetchPostSuccess(response.data.hits));
 
     } catch (err) {

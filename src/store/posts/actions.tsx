@@ -5,8 +5,9 @@ interface postpayloadType {
     error: string
 }
 
-export  const fetchPostRequest = ():any => ({
-    type:FETCH_POST_REQUEST
+export  const fetchPostRequest = (payload:any):any => ({
+    type:FETCH_POST_REQUEST,
+    payload
 });
 
 export  const fetchPostSuccess = (payload : postpayloadType['postsSuccess'] ):any=> ({
