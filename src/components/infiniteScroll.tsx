@@ -42,6 +42,7 @@ export default function PageSizeCustomOptions() {
 
   return (
     <Box 
+    data-testid='tableBox'
       sx={{
         display: "flex",
         flexDirection: "column",
