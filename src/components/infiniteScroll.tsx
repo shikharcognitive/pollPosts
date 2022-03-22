@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent} from 'react';
+import React, { useEffect, useState, ChangeEvent, ReactEventHandler} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,12 @@ export default function PageSizeCustomOptions() {
 
   useEffect( () => {
     dispatch(fetchPostRequest(selectedPage));
-  }, [])
+  }, [selectedPage]);
+
+  const changePageData = (value:any) => {
+    setSelectedPage(value);
+
+  }
 
  
 
@@ -126,7 +131,7 @@ export default function PageSizeCustomOptions() {
           </TableContainer>
           <Box sx={{padding: "50px"}}>
             <Pagination count={posts.length} 
-            onChange={(e: ChangeEvent<any>, value: number): void => setSelectedPage(value)}
+            onChange={(e: ChangeEvent<any>, value: number): void => changePageData(value)}
             page={selectedPage}></Pagination>
           </Box>
          </Box>
