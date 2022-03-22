@@ -23,7 +23,12 @@ export default function PageSizeCustomOptions() {
   const { posts } = useSelector( (state:RootState) => state.posts)
 
   useEffect( () => {
-    dispatch(fetchPostRequest(selectedPage));
+    const interval = setInterval(() => {
+      dispatch(fetchPostRequest(selectedPage));
+    }, 10000);
+  
+    return () => clearInterval(interval);
+    
   }, [selectedPage]);
 
   const changePageData = (value:any) => {
