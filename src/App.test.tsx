@@ -1,9 +1,19 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render , fireEvent, waitFor, screen} from '@testing-library/react';
+import { BrowserRouter } from "react-router-dom";
 import App from './App';
+import PageSizeCustomOptions from './components/infiniteScroll';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+// Render App and Home page
+
+test('Render App', () => {
+  //verify if UI is ready or not
+ const {getByText} = render(<App />);
+ getByText('Navbar will be here');
+});
+
+test('render scroll page', () => {
+render(<Provider store={store}> <PageSizeCustomOptions></PageSizeCustomOptions> </Provider>)
 });

@@ -1,6 +1,4 @@
-import React, { useEffect, useState, ChangeEvent, ReactEventHandler} from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { useDemoData } from '@mui/x-data-grid-generator';
+import React, { useEffect, useState, ChangeEvent} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/root-reducer';
 import { fetchPostRequest } from '../store/posts/actions';
@@ -14,18 +12,12 @@ type dataType = {
   objectID: string;
 }
 
-type listOfPost = {
-  postData: Array<any>;
-  selectedPage: number;
-  setSelectedPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
 export default function PageSizeCustomOptions() {
 
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const dispatch = useDispatch();
 
-  const { error, pending, posts } = useSelector( (state:RootState) => state.posts)
+  const { posts } = useSelector( (state:RootState) => state.posts)
 
   useEffect( () => {
     dispatch(fetchPostRequest(selectedPage));
@@ -33,7 +25,6 @@ export default function PageSizeCustomOptions() {
 
   const changePageData = (value:any) => {
     setSelectedPage(value);
-
   }
 
  
