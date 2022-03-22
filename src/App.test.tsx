@@ -10,10 +10,10 @@ import store from './store/store';
 
 test('Render App', () => {
   //verify if UI is ready or not
- const {getByText} = render(<App />);
+ const {getByText} = render(<BrowserRouter><App /> </BrowserRouter>);
  getByText('Navbar will be here');
 });
 
 test('render scroll page', () => {
-render(<Provider store={store}> <PageSizeCustomOptions></PageSizeCustomOptions> </Provider>)
+render(<BrowserRouter><Provider store={store}><PageSizeCustomOptions></PageSizeCustomOptions></Provider></BrowserRouter>)
 });
