@@ -38,6 +38,7 @@ query: String
 
 });
 
-// test('render Story Details page', () => {
-//   render(<BrowserRouter><Provider store={store}><StoryDetails storyId='53636'></StoryDetails></Provider></BrowserRouter>)
-//   });
+test('render Story Details page', () => {
+  const {getByLabelText, getByText, getByTestId } = render(<BrowserRouter><Provider store={store}><StoryDetails></StoryDetails></Provider></BrowserRouter>);
+  getByTestId('detailsBox')
+  });

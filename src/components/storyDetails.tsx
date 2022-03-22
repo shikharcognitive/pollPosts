@@ -16,7 +16,7 @@ const StoryDetails: FC<StoryDetailsProps> = (props:any) => {
   
   
     useEffect( () => {
-      if(location && location.state.storyId !== '') {
+      if(location && location.state && location.state.storyId !== '') {
         let storyData:any = posts.filter( (post:any) => post.objectID === location.state.storyId);
         storyData = JSON.stringify(storyData)
         setStoryDetails(storyData);
@@ -25,7 +25,7 @@ const StoryDetails: FC<StoryDetailsProps> = (props:any) => {
 
     return (
         <Container>
-            <Box>{ storyDetails}</Box>
+            <Box data-testid='detailsBox'>{storyDetails}</Box>
         </Container>
     )
 }
