@@ -1,8 +1,10 @@
-import React, { useEffect, useState, ChangeEvent} from 'react';
+import React, { useEffect, useState, ChangeEvent, ReactEventHandler} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/root-reducer';
 import { fetchPostRequest } from '../store/posts/actions';
 import { Box, CircularProgress, TableContainer, Table, TableHead, TableCell, TableBody, TableRow, Button, Pagination } from "@mui/material";
+import {useNavigate } from "react-router-dom";
+
 
 type dataType = {
   author: string;
@@ -16,6 +18,7 @@ export default function PageSizeCustomOptions() {
 
   const [selectedPage, setSelectedPage] = useState<number>(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const { posts } = useSelector( (state:RootState) => state.posts)
 
@@ -25,6 +28,14 @@ export default function PageSizeCustomOptions() {
 
   const changePageData = (value:any) => {
     setSelectedPage(value);
+  }
+
+  const showStoryData = (storyItem:any) => {
+    navigate(`/story-details/${storyItem.author}`, {
+      state : {
+        storyId: storyItem.objectID,
+      }
+    });
   }
 
  
@@ -112,7 +123,7 @@ export default function PageSizeCustomOptions() {
                       <TableCell>{created_at}</TableCell>
                       <TableCell sx={{ maxWidth: 200, overflow: "hidden"}}>{url}</TableCell>
                       <TableCell>
-                        <Button variant="contained">Select</Button>
+                        <Button variant="contained" onClick={(e:React.MouseEvent<any>) => showStoryData(items)}>Select</Button>
                       </TableCell>
                     </TableRow>
                   )
